@@ -1,0 +1,60 @@
+{% extends 'comp_vision/base.html' %}
+{% load static %}
+
+{% block css %}
+    <link href={% static "vendor/css/result.css" %} rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<section>
+
+    <div class="container">
+        <div class="row">
+            {% if video_notexist %}
+                <h4> Файл не найден. <br> Все файлы хранятся до загрузки следуещего файла </h4>
+            {% else %}
+                <div class="parc-video-container">
+                    <video width="700" height="350" controls >
+                        <source src="{% url 'comp_vision:streem_parc' video.id %}" type="video/mp4">
+                    </video>
+                    <div>
+                        <h3>Detection видео</h3>
+                        <p>Размер: {{ size1 }} mb</p>
+{#                        <p>Количество обнаруженных людей с едой: посчитаем за 500$ </p>#}
+                        <button class="btn" type="submit" onclick="location.href='{% url 'comp_vision:download_parc_file' video.id %}'">Скачать</button>
+
+
+                    </div>
+                </div>
+                {% if not video_is_mp4 %}
+                <div class="video-container">
+                    <video width="470" height="270" controls>
+                        <source src="{% url 'comp_vision:streem_rgb' video.id %}">
+                    </video>
+                    <div>
+                        <h3>RGB видео</h3>
+                        <p>Размер: {{ size2 }} mb</p>
+                         <button class="btn" type="submit" onclick="location.href='{% url 'comp_vision:download_rgb_file' video.id %}'">Скачать</button>
+                    </div>
+                </div>
+                <div class="video-container">
+                    <video width="470" height="270" controls>
+                        <source src="{% url 'comp_vision:streem_depth' video.id %}" type="video/mp4">
+                    </video>
+                    <div>
+                        <h3>Depth видео</h3>
+                        <p>Размер: {{ size3 }} mb</p>
+                         <button class="btn" type="submit" onclick="location.href='{% url 'comp_vision:download_depth_file' video.id %}'">Скачать</button>
+                    </div>
+                </div>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+
+<script src="https://vjs.zencdn.net/7.10.2/video.min.js"></script>
+{% endblock %}
+

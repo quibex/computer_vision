@@ -1,0 +1,5 @@
+Pillow
+django==3.2.13
+opencv-python
+--extra-index-url https://rospypi.github.io/simple/ rospy rosbag
+pyrealsense2

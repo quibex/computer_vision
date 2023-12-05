@@ -1,0 +1,79 @@
+{% extends 'comp_vision/base.html' %}
+{% load static %}
+
+
+{% block css %}
+
+    <link href={% static "vendor/css/index.css" %} rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+	<section>
+		<style>
+			#dim {
+				display: none;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: #00000088;
+			}
+			#dim.visible {
+				display: block;
+			}
+		</style>
+		<script>
+			function onClickSubmit() {
+				setTimeout(function() {
+					document.getElementById('dim').classList.add('visible');
+				}, 100);
+				document.forms.video_form.submit();
+			}
+		</script>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h1 class="mt-5">Распознавание человека с едой</h1>
+                    <p class="mt-5">
+                        Надоели распозновать людей с едой в bag файле или в видео? <br>
+                        Поздравляем <br>
+                        Мы сделаем это за вас ~_+
+                    </p>
+                    <p class="mt-5">
+                        Ориентировочное скорость обработки видео: 7 кадров/с <br>
+                        После загрузки файла подождите необходимое количество времени
+                        <br>
+                        <br>
+                        Допустимые форматы загружаемых файлов: .mp4, .bag
+                    </p>
+                    {% if not status %}
+                    <form action="{% url 'comp_vision:index' %}" method="post" name="video_form" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-row mb-2">
+                            <div class="col-lg-12">
+                                <div class="file-upload-container ">
+                                    {{ form.bag_file }}
+                                    <label class="" for="{{ form.bag_file.id_for_label }}"> {{ form.errors }} </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div id="start-purchase-btn" class="">
+                                <!--input class="btn" type="submit" value="Загрузить файл"-->
+                                <input class="btn" type="button" onclick="onClickSubmit()" value="Загрузить файл">
+                            </div>
+                        </div>
+                    </form>
+                    {% else %}
+                        <div class="btn1">
+                          <a href="#"><span>Посмотреть результат</span></a>
+                        </div>
+                    {% endif %}
+
+                </div>
+            </div>
+			<div id="dim" onclick="javascript:void(0)"> <img src="https://media.tenor.com/PYHR63XRsn8AAAAi/cumple-a%C3%B1os.gif" hspace="150" vspace="100"> </div>
+        </div>
+    </section>
+{% endblock %}
