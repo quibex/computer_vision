@@ -1,6 +1,8 @@
 # Поиск людей на видео
 
-Наш проект представляет собой сайт, внутри которого работает программа, использующая инструментарий [OpenCV](https://github.com/opencv/opencv) и [NVIDIA-Cuda](https://developer.nvidia.com/cuda-toolkit) и обрабатывающая `.bag` или `.mp4` файлы. Программа выдаёт 3 видео-файла `RGB, DEPTH и RGB с обнаруженными объектами`, которые выводятся на странице сайта в плеере с возможностью скачивания. 
+Наш проект представляет собой сайт, внутри которого работает программа, использующая инструментарий [OpenCV](https://github.com/opencv/opencv) и [NVIDIA-Cuda](https://developer.nvidia.com/cuda-toolkit) и обрабатывающая `.bag` или `.mp4` файлы. Программа выдаёт 3 видео-файла `RGB, DEPTH и RGB с обнаруженными объектами`, которые выводятся на странице сайта в плеере с возможностью скачивания. <br>
+ML-engineers: [karseny99](https://github.com/karseny99), [kingxl111](https://github.com/kingxl111). <br>
+Backend dev: [quibex](https://github.com/quibex)
 
 # Содержание  
 1. [Архитектура](#arch)
